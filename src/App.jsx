@@ -7,8 +7,8 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Classes from "./pages/Classes";
 import Contact from "./pages/Contact";
+import Reservas from "./pages/Reservas"; // Importa la página de Reservas
 import "./styles/global.scss";
-
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/classes" element={<Classes />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/reservas" element={<Reservas />} /> {/* Añadir la ruta para Reservas */}
       </Routes>
     </Router>
   );

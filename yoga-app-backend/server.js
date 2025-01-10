@@ -17,10 +17,10 @@ app.use(bodyParser.json());
 
 // Conectar a MongoDB Atlas
 mongoose
-  .connect(mongoURI, { // Usamos la URI cargada desde .env
+  .connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    bufferCommands: false, // Desactiva buffering
+    bufferCommands: false,
     serverSelectionTimeoutMS: 5000, // Timeout a 5 segundos
     socketTimeoutMS: 45000, // Timeout de socket
   })
@@ -30,20 +30,47 @@ mongoose
     process.exit(1);
   });
 
-// Esquema de usuario
+// Esquema de usuario con validación
 const userSchema = new mongoose.Schema({
-  name: String,
-  email: { type: String, unique: true },
-  password: String,
+  name: { type: String, required: true },
+  email: { 
+    type: String, 
+    unique: true, 
+    required: true, 
+    match: /.+\@.+\..+/ // Regex para validar el formato del email
+  },
+  password: { type: String, required: true },
 });
 
 const User = mongoose.model('User', userSchema, 'users'); // 'users' es el nombre de la colección
+
+// Middleware para verificar el token JWT
+const verifyToken = (req, res, next) => {
+  const token = req.header("x-auth-token");
+  if (!token) {
+    return res.status(401).json({ message: "Acceso no autorizado" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded.userId;  // Almacena el userId en la solicitud
+    next();
+  } catch (error) {
+    res.status(401).json({ message: "Token inválido o expirado" });
+  }
+};
 
 // Ruta de registro
 app.post("/api/register", async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
+    // Verificar si el email ya está registrado
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "El correo electrónico ya está registrado" });
+    }
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -52,7 +79,7 @@ app.post("/api/register", async (req, res) => {
 
     res.status(201).json({ message: "Usuario registrado exitosamente" });
   } catch (err) {
-    console.error("Error al registrar el usuario:", err); // Esto imprimirá el error en la consola
+    console.error("Error al registrar el usuario:", err);
     res.status(500).json({ message: "Error al registrar el usuario", error: err.message });
   }
 });
@@ -72,16 +99,4 @@ app.post("/api/login", async (req, res) => {
       return res.status(400).json({ message: "Contraseña incorrecta" });
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
-    res.json({ token });
-  } catch (err) {
-    console.error("Error al iniciar sesión:", err); // Esto imprimirá el error en la consola
-    res.status(500).json({ message: "Error al iniciar sesión", error: err.message });
-  }
-});
-
-// Iniciar servidor
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));
+    const token = jwt.sign({ userId: user

@@ -14,13 +14,20 @@
 
   &__toggle {
     position: absolute;
-    top: 1rem;
-    left: -100px;
+    top: 6rem;
+    left: -140px;
     padding: 0.5rem 1rem;
-    background-color: #3498db;
+    width: 20%; /* Asegura que tenga el mismo ancho */
+    background-color: #60b0e5; /* Azul para login */
     color: #fff;
     border: none;
     cursor: pointer;
+    text-align: center;
+  }
+
+  /* Estilo específico para el botón de "Salir" */
+  &__toggle.logout-btn {
+    background-color: #e74c3c; /* Rojo para el botón de salir */
   }
 
   &__form {
@@ -44,10 +51,12 @@
     button {
       padding: 0.5rem;
       font-size: 1rem;
+      width: 100%; /* Asegura que el botón ocupe todo el ancho */
       background-color: #3498db;
       color: #fff;
       border: none;
       cursor: pointer;
+      margin-top: 1rem; /* Empujar el botón más abajo */
     }
   }
 }
