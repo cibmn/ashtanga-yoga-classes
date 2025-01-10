@@ -1,0 +1,31 @@
+@use "../styles/variables" as *;
+
+body {
+  margin: 0;
+  font-family: $font-family !important; // Aplica la fuente global
+  background-color: $background-color; // Color de fondo global
+  color: $secondary-color; // Color de texto predeterminado
+}
+
+h1, h2, h3, h4, h5, h6, p, a, li, button, input {
+  font-family: inherit !important; // Heredan la tipografía del body
+}
+
+.home,
+.about,
+.classes,
+.contact {
+  padding: 2rem;
+  text-align: center;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: $primary-color;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: $secondary-color;
+  }
+}
