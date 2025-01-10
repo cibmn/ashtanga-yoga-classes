@@ -1,14 +1,18 @@
-@use "../styles/variables" as *;
+@use "../styles/_variables.scss" as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap');
+
+
 
 body {
   margin: 0;
-  font-family: $font-family !important; // Aplica la fuente global
-  background-color: $background-color; // Color de fondo global
-  color: $secondary-color; // Color de texto predeterminado
+  font-family: $font-family; 
+  background-color: $background-color; 
+  color: $secondary-color; 
 }
 
 h1, h2, h3, h4, h5, h6, p, a, li, button, input {
-  font-family: inherit !important; // Heredan la tipografía del body
+  font-family: inherit; 
 }
 
 .home,

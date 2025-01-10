@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Reservas from "../pages/Reservas";
+import "../styles/global.scss";
+
 
 const Home = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado de autenticación
