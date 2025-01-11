@@ -1,39 +1,47 @@
 @use "../styles/_variables.scss" as *;
 
-@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Major+Mono+Display&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Major+Mono+Display&family=Orbitron:wght@400..900&display=swap');
-
 body {
   margin: 0;
-  font-family: 'Host Grotesk', sans-serif; 
+  font-family: $font-family; 
   background-color: $background-color; 
   color: $secondary-color; 
 }
 
+
 h1, h2, h3, h4, h5, h6, p, a, li, button, input {
-  font-family: 'Host Grotesk', sans-serif; 
+  font-family: $font-family; 
 }
 
 h2, p {
   margin: 20px; 
 }
 
-.home,
-.about,
-.classes,
-.contact {
+.home {
   padding: 2rem;
   text-align: center;
 
   h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
-    color: $primary-color;
+    color: $primary-color; /* Usamos la variable de color */
   }
 
   p {
     font-size: 1.2rem;
-    color: $secondary-color;
+    color: $secondary-color; /* Usamos la variable de color */
   }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Ajusta el espacio entre el texto y la imagen */
+  }
+  
+  .image-container img {
+    max-width: 20%; /* Ajusta el tamaño de la imagen según sea necesario */
+    height: auto;
+    border-radius: 18px;
+  }
+
 }

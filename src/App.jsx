@@ -2,12 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Classes from "./pages/Classes";
 import Contact from "./pages/Contact";
-import Reservas from "./pages/Reservas"; // Importa la página de Reservas
+import Reservas from "./pages/Reservas"; 
 import "./styles/global.scss";
 
 function App() {
