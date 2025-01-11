@@ -7,21 +7,24 @@ import About from "./pages/About";
 import Classes from "./pages/Classes";
 import Contact from "./pages/Contact";
 import Reservas from "./pages/Reservas"; 
+import { AuthProvider } from "../src/context/authContext"; // Importa el AuthProvider
 import "./styles/global.scss";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Sidebar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/classes" element={<Classes />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/reservas" element={<Reservas />} /> {/* Añadir la ruta para Reservas */}
-      </Routes>
-    </Router>
+    <AuthProvider> {/* Envuelve todo dentro del proveedor de contexto */}
+      <Router>
+        <Navbar />
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/classes" element={<Classes />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/reservas" element={<Reservas />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 

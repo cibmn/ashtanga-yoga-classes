@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../context/authContext";
 import "../styles/Sidebar.scss";
 
-const Sidebar = ({ onLoginSuccess, onLogout }) => {
+const Sidebar = () => {
+  const { isAuthenticated, login, logout } = useContext(AuthContext); // Consume el contexto
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState(""); 
-  const [password, setPassword] = useState(""); 
-  const [isAuthenticated, setIsAuthenticated] = useState(false); 
-  const [isRegistering, setIsRegistering] = useState(false); // Estado para controlar si está en el modo de registro
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
+  const [isRegistering, setIsRegistering] = useState(false);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -28,13 +29,12 @@ const Sidebar = ({ onLoginSuccess, onLogout }) => {
       const data = await response.json();
 
       if (response.ok) {
-        setIsAuthenticated(true);
-        localStorage.setItem("token", data.token); 
-        alert("Login exitoso"); 
-        onLoginSuccess(); 
-        setIsOpen(false); 
+        login(); // Llama al método login del contexto
+        localStorage.setItem("token", data.token);
+        alert("Login exitoso");
+        setIsOpen(false);
       } else {
-        alert(data.message); 
+        alert(data.message);
       }
     } catch (error) {
       console.error("Error al hacer login:", error);
@@ -58,10 +58,10 @@ const Sidebar = ({ onLoginSuccess, onLogout }) => {
       const data = await response.json();
 
       if (response.ok) {
-        alert("Registro exitoso"); 
-        setIsRegistering(false); 
+        alert("Registro exitoso");
+        setIsRegistering(false);
       } else {
-        alert(data.message); 
+        alert(data.message);
       }
     } catch (error) {
       console.error("Error al registrar usuario:", error);
@@ -71,12 +71,11 @@ const Sidebar = ({ onLoginSuccess, onLogout }) => {
 
   // Función para manejar el logout
   const handleLogout = () => {
-    setIsAuthenticated(false); 
-    localStorage.removeItem("token"); 
-    setUser(""); 
-    setPassword(""); 
+    logout(); // Llama al método logout del contexto
+    localStorage.removeItem("token");
+    setUser("");
+    setPassword("");
     alert("Has cerrado sesión.");
-    onLogout(); // Llamar a la función de logout para cambiar el estado en Home
   };
 
   return (
@@ -94,14 +93,14 @@ const Sidebar = ({ onLoginSuccess, onLogout }) => {
             type="email"
             placeholder="Email"
             value={user}
-            onChange={(e) => setUser(e.target.value)} 
+            onChange={(e) => setUser(e.target.value)}
             required
           />
           <input
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)} 
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
           <button type="submit">Entrar</button>
@@ -120,20 +119,20 @@ const Sidebar = ({ onLoginSuccess, onLogout }) => {
             type="email"
             placeholder="Email"
             value={user}
-            onChange={(e) => setUser(e.target.value)} 
+            onChange={(e) => setUser(e.target.value)}
             required
           />
           <input
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)} 
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
           <button type="submit">Registrame</button>
           <button
             type="button"
-            onClick={() => setIsRegistering(false)} // Volver al login
+            onClick={() => setIsRegistering(false)} // Volver a Login
           >
             Volver a Login
           </button>

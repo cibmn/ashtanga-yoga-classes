@@ -7,18 +7,23 @@ body {
   color: $secondary-color; 
 }
 
-
 h1, h2, h3, h4, h5, h6, p, a, li, button, input {
   font-family: $font-family; 
+
 }
 
 h2, p {
   margin: 20px; 
 }
 
-.home {
+.home,
+.classes,
+.about,
+.contact,
+.reservas {
   padding: 2rem;
-  text-align: center;
+  text-align: center;  /* Asegura que el texto esté centrado */
+  margin-top: 20px;    /* Espacio adicional al principio de cada sección */
 
   h1 {
     font-size: 2rem;
@@ -29,19 +34,6 @@ h2, p {
   p {
     font-size: 1.2rem;
     color: $secondary-color; /* Usamos la variable de color */
-  }
-
-  .image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px; /* Ajusta el espacio entre el texto y la imagen */
-  }
-  
-  .image-container img {
-    max-width: 20%; /* Ajusta el tamaño de la imagen según sea necesario */
-    height: auto;
-    border-radius: 18px;
   }
 
 }
