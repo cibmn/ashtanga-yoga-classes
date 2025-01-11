@@ -18,7 +18,7 @@
     left: -140px;
     padding: 0.5rem 1rem;
     width: 20%; 
-    background-color: #60b0e5;
+    background-color: #73b5e1;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -27,7 +27,7 @@
 
   /* Estilo específico para el botón de "Salir" */
   &__toggle.logout-btn {
-    background-color: #e74c3c; /* Rojo para el botón de salir */
+    background-color: #d1685c; 
   }
 
   &__form {
@@ -51,12 +51,12 @@
     button {
       padding: 0.5rem;
       font-size: 1rem;
-      width: 100%; /* Asegura que el botón ocupe todo el ancho */
-      background-color: #3498db;
+      width: 100%; 
+      background-color: #73b5e1;
       color: #fff;
       border: none;
       cursor: pointer;
-      margin-top: 1rem; /* Empujar el botón más abajo */
+      margin-top: 1rem;
     }
   }
 }

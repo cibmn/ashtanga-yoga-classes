@@ -59,7 +59,7 @@ const Sidebar = ({ onLoginSuccess, onLogout }) => {
 
       if (response.ok) {
         alert("Registro exitoso"); 
-        setIsRegistering(false); // Volver al modo de login después del registro
+        setIsRegistering(false); 
       } else {
         alert(data.message); 
       }
@@ -89,7 +89,7 @@ const Sidebar = ({ onLoginSuccess, onLogout }) => {
       </button>
       {isOpen && !isAuthenticated && !isRegistering && (
         <form className="sidebar__form" onSubmit={handleLogin}>
-          <h2>Login</h2>
+          <h2>Campus virtual</h2>
           <input
             type="email"
             placeholder="Email"
@@ -104,7 +104,7 @@ const Sidebar = ({ onLoginSuccess, onLogout }) => {
             onChange={(e) => setPassword(e.target.value)} 
             required
           />
-          <button type="submit">Submit</button>
+          <button type="submit">Entrar</button>
           <button
             type="button"
             onClick={() => setIsRegistering(true)} // Cambiar a registro
@@ -130,7 +130,7 @@ const Sidebar = ({ onLoginSuccess, onLogout }) => {
             onChange={(e) => setPassword(e.target.value)} 
             required
           />
-          <button type="submit">Registrar</button>
+          <button type="submit">Registrame</button>
           <button
             type="button"
             onClick={() => setIsRegistering(false)} // Volver al login

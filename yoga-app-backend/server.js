@@ -99,4 +99,17 @@ app.post("/api/login", async (req, res) => {
       return res.status(400).json({ message: "Contraseña incorrecta" });
     }
 
-    const token = jwt.sign({ userId: user
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.status(200).json({ message: "Login exitoso", token });
+  } catch (err) {
+    console.error("Error al iniciar sesión:", err);
+    res.status(500).json({ message: "Error al iniciar sesión", error: err.message });
+  }
+});
+
+// Asegúrate de que el puerto esté configurado correctamente
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
