@@ -1,34 +1,57 @@
 .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  &__logo {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #f8f9fa;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    
-  
-    &__logo a {
+    gap: 0.5rem;
+
+    a {
       font-size: 1.5rem;
       font-weight: bold;
       color: #2c3e50;
       text-decoration: none;
     }
-  
-    &__links {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-  
-      li a {
-        text-decoration: none;
-        font-size: 1rem;
-        color: #2c3e50;
-        transition: color 0.3s;
-  
-        &:hover {
-          color: #3498db;
-        }
+
+    img {
+      width: 60px;
+      height: auto;
+      opacity: 0;
+      animation: aparecer 1.5s ease-in-out 1;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  &__links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    font-family: 'Host Grotesk', sans-serif; 
+
+    li a {
+      text-decoration: none;
+      font-size: 1rem;
+      color: #2c3e50;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #3498db;
       }
     }
   }
-  
+}
+
+// Animación "aparecer"
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

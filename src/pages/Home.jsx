@@ -27,7 +27,7 @@ const Home = () => {
         <Reservas /> // Mostrar Reservas.jsx solo si el usuario está autenticado
       ) : (
         <div>
-          <h2>Bienvenido a la página principal</h2>
+          <h2>Hola!</h2>
           <p>Por favor, inicia sesión para acceder a las reservas de clases.</p>
         </div> // Mostrar el Home cuando no esté autenticado
       )}
